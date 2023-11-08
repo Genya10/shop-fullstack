@@ -4,7 +4,9 @@ export class DeviceStore {
     constructor(){
        this._types=[
         {id:1,name:'Fridge'},
-        {id:2,name:'Smartphone'}
+        {id:2,name:'Smartphone'},
+        {id:3,name:'Laptop'},
+        {id:4,name:'Televisions'},
        ]
        this._brands=[
         {id:1,name:'Samsung'},
@@ -16,6 +18,7 @@ export class DeviceStore {
         {id:3,name:"Smartphone",price:12000,img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"},
         {id:4,name:"Smartphone",price:12000,img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"},
     ]
+    this._selectedType={}
         makeAutoObservable(this)
     }
     setTypes(types){
@@ -27,6 +30,10 @@ export class DeviceStore {
     setIsUser(devices){
         this._devices = devices
     }
+    setSelectedType(type){
+        this._selectedType = type
+    }
+
     get types(){
         return this._types
     }
@@ -35,5 +42,8 @@ export class DeviceStore {
     }
     get devices(){
         return this._devices
+    }
+    get selectedType(){
+        return this._selectedType
     }
 }
