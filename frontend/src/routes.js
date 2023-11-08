@@ -1,10 +1,10 @@
 import { ADMIN_ROUTE,BASKET_ROUTE,SHOP_ROUTE,LOGIN_ROUTE,
       REGISTRATION_ROUTE,DEVICE_ROUTE } from "./utils/const";
-import Basket from "./pages/Basket";
-import Admin from "./pages/Admin";
-import Shop from "./pages/Shop";
-import Auth from "./pages/Auth";
-import DevicePage from "./pages/DevicePage";
+import {Basket} from "./pages/Basket";
+import {Admin} from "./pages/Admin";
+import {Shop} from "./pages/Shop";
+import {Auth} from "./pages/Auth";
+import {DevicePage} from "./pages/DevicePage";
 
 export const authRoutes=[
   {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Shop = ()=>{
+export const DevicePage = ()=>{
     return(
         <div>
              DevicePage
