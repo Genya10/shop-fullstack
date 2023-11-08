@@ -18,9 +18,7 @@ return(
             >
             {type.name}
         </ListGroup.Item>
-        )}
-      
-
+        )}      
     </ListGroup>
     </div>
 )
