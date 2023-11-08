@@ -1,13 +1,15 @@
-
 import './App.css';
 import { Shop } from './pages/Shop';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRouter } from './components/AppRouter';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-   WORKING GOOD
-  <Shop/>
+    <AppRouter/>
     </div>
+    </BrowserRouter>
   );
 }
 
