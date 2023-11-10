@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/esm/Form';
 import Card from 'react-bootstrap/esm/Card';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/esm/Button';
-import {NavLink,useLocation} from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/const';
+import {NavLink,useLocation, useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/const';
 import {login, registration } from '../http/userAPI';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../index';
 
-export const Auth = ()=>{
+export const Auth = observer(()=>{
+    const {user}=useContext(Context);
     const location = useLocation();
+    const navigate = useNavigate();
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const click = async()=>{
+      try{
+      let data ;
       if(isLogin){
-        const response = await login()
+        data = await login(email,password)
       }else{
-        const response = await registration(email,password)
-        console.log(response)
-      }           
+        data = await registration(email,password)
+      }         
+      user.serUser(user)
+      user.setIsAuth(true)  
+      navigate(SHOP_ROUTE)
+    }catch(e){
+      alert('Sorry')
     }
-
+}
     return(
       <Container
        className='d-flex justify-content-center align-items-center'
@@ -59,4 +69,4 @@ export const Auth = ()=>{
         </Card>
        </Container>
     )
-}
+})
