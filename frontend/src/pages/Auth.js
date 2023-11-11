@@ -30,7 +30,7 @@ export const Auth = observer(()=>{
       user.setIsAuth(true)  
       navigate(SHOP_ROUTE)
     }catch(e){
-      alert('Sorry')
+      alert("Sorry,it's error")
     }
 }
     return(
