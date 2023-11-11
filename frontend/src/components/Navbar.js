@@ -12,6 +12,11 @@ export const NavBar =observer(()=>{
   const {user}=useContext(Context)
   const navigate = useNavigate()
 
+  const logout = ()=>{
+    user.setUser({})
+    user.setIsAuth(false)
+  }
+
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
@@ -26,13 +31,13 @@ export const NavBar =observer(()=>{
             >Admin</Button>
             <Button 
             variant={"outline-light"} style={{marginLeft:"10px"}}
-            onClick={()=>navigate(LOGIN_ROUTE)}
+            onClick={()=>logout()}
             >Go out</Button>
           </Nav>
         ) : (
           <Nav>
             <Button variant={"outline-light"}
-            onClick={()=>user.setIsAuth(true)}>Authorization</Button>
+            onClick={()=>navigate(LOGIN_ROUTE)}>Authorization</Button>
           </Nav>
         )}
       </Container>
