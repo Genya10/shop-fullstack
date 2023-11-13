@@ -5,8 +5,8 @@ export class DeviceStore {
        this._types=[]   
        this._brands=[]       
        this._devices =[]      
-       this._selectedType={}
-       this._selectedBrand={}
+       /*this._selectedType={}
+       this._selectedBrand={}*/
         makeAutoObservable(this)
     }
     setTypes(types){
