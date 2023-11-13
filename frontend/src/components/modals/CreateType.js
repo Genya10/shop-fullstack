@@ -1,9 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { createType } from "../../http/deviceAPI";
 
 export const CreateType=({show,onHide})=>{
+
+  const [value,setValue]=useState('');
+  const addType=()=>{
+        createType({name:value}).then(data => setValue(''))
+        onHide()
+  }
 
     return(
         <Modal
@@ -19,12 +26,15 @@ export const CreateType=({show,onHide})=>{
         </Modal.Header>
         <Modal.Body>
             <Form>
-                <Form.Control placeholder={'Enter name type'}/>              
+                <Form.Control
+                 value={value}
+                 onChange={(e)=>{setValue(e.target.value)}}
+                 placeholder={'Enter name type'}/>              
             </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-danger" onClick={onHide}>Close</Button>
-          <Button variant="outline-success" onClick={onHide}>Add</Button>
+          <Button variant="outline-success" onClick={addType}>Add</Button>
         </Modal.Footer>
       </Modal>
     )
