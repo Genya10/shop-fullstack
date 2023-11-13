@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useContext } from "react";
 import { Context } from "../../index";
 import {Row,Col,Dropdown,Form,Button} from "react-bootstrap";
-import { fetchTypes,fetchBrands } from "../../http/deviceAPI";
+import { fetchTypes,fetchBrands,createDevice } from "../../http/deviceAPI";
 import { observer } from "mobx-react-lite";
 
 export const CreateDevice= observer(({show,onHide})=>{
@@ -33,7 +33,15 @@ export const CreateDevice= observer(({show,onHide})=>{
         setFile(e.target.files[0])
     }
     const addDevice=()=>{
-        console.log(info)
+        const formData = new FormData()
+        console.log(formData)
+        formData.append('name',name)
+        formData.append('price', `${price}`)
+        formData.append('img',file)
+        formData.append('brandId',device.setSelectedBrand.id)
+        formData.append('typeId',device.setSelectedType.id)
+        formData.append('info',JSON.stringify(info))
+        createDevice(formData).then(data=> onHide())
     }
 
     return (
