@@ -4,11 +4,7 @@ export class DeviceStore {
     constructor(){
        this._types=[]   
        this._brands=[]       
-       this._devices =[
-        {id:1,name:"Smartphone",price:12000,rating:5,img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"},
-        {id:2,name:"Smartphone",price:12000,rating:5,img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"},
-        {id:3,name:"Smartphone",price:12000,rating:5,img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"},
-       ]
+       this._devices =[]      
        this._selectedType={}
        this._selectedBrand={}
         makeAutoObservable(this)

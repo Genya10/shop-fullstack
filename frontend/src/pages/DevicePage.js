@@ -1,23 +1,22 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {Col,Container,Image,Row,Card,Button} from "react-bootstrap";
 import bigStar from "../assets/bigStar.png";
+import { useParams } from 'react-router-dom';
+import { fetchOneDevice } from '../http/deviceAPI';
 
 export const DevicePage = ()=>{
-  const device =   {id:1,name:"Smartphone",price:12000,rating:5,
-    img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"}
-  const description =[
-    {id:1,title:'memory',description:'5 gb'},
-    {id:2,title:'camera',description:'12 mp'},
-    {id:3,title:'proccesor',description:'pentium 3'},
-    {id:4,title:'cors',description:'3'},
-    {id:5,title:'accumulator',description:'3000'},
-  ]
+    const [device,setDevice]=useState({info:[]})   
+    const {id} = useParams()
+    console.log({id})
+    useEffect(()=>{
+      fetchOneDevice(id).then(data=>setDevice(data))
+    },[])
 
     return (
       <Container className='mt-3'>
         <Row>
         <Col md={4}>
-          <Image width={300} height={300} src={device.img} />
+          <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />
         </Col>
         <Col md={4}>
          <Row className='d-flex flex-column align-items-center'>
@@ -41,7 +40,7 @@ export const DevicePage = ()=>{
         </Row>
         <Row className='m-3'>
             <h2>Characteristics</h2>
-            {description.map((info,index)=>
+            {device.info.map((info,index)=>
                 <Row key={info.id} style={{background:index % 2 === 0 ? 'lightgray':'transparent',padding:5}}>
                     {info.title}:{info.description}</Row>
             )}
@@ -49,3 +48,14 @@ export const DevicePage = ()=>{
       </Container>
     );
 }
+/*
+  const device =   {id:1,name:"Smartphone",price:12000,rating:5,
+    img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"}
+  const description =[
+    {id:1,title:'memory',description:'5 gb'},
+    {id:2,title:'camera',description:'12 mp'},
+    {id:3,title:'proccesor',description:'pentium 3'},
+    {id:4,title:'cors',description:'3'},
+    {id:5,title:'accumulator',description:'3000'},
+  ]
+ */
