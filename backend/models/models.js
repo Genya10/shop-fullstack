@@ -36,7 +36,7 @@ const Brand = sequelize.define("brand", {
 
 const Rating = sequelize.define("rating", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  name: { type: DataTypes.INTEGER, allowNull: false },
+  rate: { type: DataTypes.INTEGER, allowNull: false },
 });
 
 const DeviceInfo = sequelize.define("device_info", {
@@ -62,7 +62,7 @@ Type.hasMany(Device);
 Device.belongsTo(Type);
 
 Brand.hasMany(Device);
-Device.belongsTo(Type);
+Device.belongsTo(Brand);
 
 Device.hasMany(Rating);
 Rating.belongsTo(Device);
