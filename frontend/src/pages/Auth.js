@@ -13,6 +13,7 @@ import { Context } from '../index';
 export const Auth = observer(()=>{
     const {user}=useContext(Context);
     const location = useLocation();
+    console.log(location)
     const navigate = useNavigate();
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState("");
@@ -56,11 +57,11 @@ export const Auth = observer(()=>{
           <Row className='d-flex justify-content-between mt-3'>
             {isLogin ?
             <div>
-              Don't have an account?<NavLink to={REGISTRATION_ROUTE}>Register</NavLink>
+              Don't have an account?<NavLink to={REGISTRATION_ROUTE}>Registration</NavLink>
             </div>
             :
             <div>
-                Do you have account<NavLink to={LOGIN_ROUTE}>Enter</NavLink>
+                Do you have account?<NavLink to={LOGIN_ROUTE}>Enter</NavLink>
             </div>}
             <Button variant={'outline-success'}
                   onClick={click}>                    

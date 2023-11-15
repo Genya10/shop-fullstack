@@ -28,11 +28,13 @@ export const NavBar = observer(()=>{
             <Button            
             variant={"outline-light"}
             onClick={()=>navigate(ADMIN_ROUTE)}
-            >Admin</Button>
+            >Admin
+            </Button>
             <Button 
             variant={"outline-light"} style={{marginLeft:"10px"}}
             onClick={()=>logout()}
-            >Go out</Button>
+            >Go out
+            </Button>
           </Nav>
         ) : (
           <Nav>
