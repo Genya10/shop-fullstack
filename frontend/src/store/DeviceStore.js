@@ -12,6 +12,7 @@ export class DeviceStore {
        this._limit = 3
         makeAutoObservable(this)
     }
+
     setTypes(types){
         this._types = types
     }
@@ -22,10 +23,11 @@ export class DeviceStore {
         this._devices = devices
     }
     setSelectedType(type){
-        this._setPage(1)
+        this.setPage(1)
         this._selectedType = type
     }
     setSelectedBrand(brand){
+        this.setPage(1)
         this._selectedBrand = brand
     }
     setPage(page){

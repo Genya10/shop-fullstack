@@ -17,7 +17,7 @@ class UserController {
     }
     const candidate = await User.findOne({ where: { email } });
     if (candidate) {
-      return next(ApiError.badRequest("There is an author yet"));
+      return next(ApiError.badRequest("this author already exists"));
     }
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({ email, role, password: hashPassword });

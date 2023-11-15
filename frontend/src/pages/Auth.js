@@ -13,7 +13,6 @@ import { Context } from '../index';
 export const Auth = observer(()=>{
     const {user}=useContext(Context);
     const location = useLocation();
-    console.log(location)
     const navigate = useNavigate();
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState("");
@@ -26,13 +25,14 @@ export const Auth = observer(()=>{
         data = await login(email,password)
       }else{
         data = await registration(email,password)
+        console.log(data)
       }         
       user.setUser(data)
       //user.setUser(user)
       user.setIsAuth(true)  
       navigate(SHOP_ROUTE)
     }catch(e){
-      alert("Sorry,it's error")
+      alert(e.response.data.message)
     }
 }
     return(

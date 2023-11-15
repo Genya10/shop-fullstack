@@ -24,10 +24,10 @@ export const CreateDevice= observer(({show,onHide})=>{
         setInfo([...info,{title:'',description:'',number:Date.now()}])
     }
     const removeInfo = (number)=>{
-        setInfo(info.filter(inf=>inf.number !== number))
+        setInfo(info.filter(i => i.number !== number))
     }
     const changeInfo=(key,value,number)=>{
-        setInfo(info.map(i=>i.number === number ? {...i,[key]:value}:i))
+        setInfo(info.map(i => i.number === number ? {...i,[key]:value}:i))
     }
     const selectFile = e =>{
         setFile(e.target.files[0])
@@ -37,10 +37,10 @@ export const CreateDevice= observer(({show,onHide})=>{
         console.log(formData)
         formData.append('name',name)
         formData.append('price', `${price}`)
-        formData.append('img',file)
-        formData.append('brandId',device.setSelectedBrand.id)
-        formData.append('typeId',device.setSelectedType.id)
-        formData.append('info',JSON.stringify(info))
+        formData.append('img', file)
+        formData.append('brandId',device.selectedBrand.id)
+        formData.append('typeId',device.selectedType.id)
+        formData.append('info', JSON.stringify(info))
         createDevice(formData).then(data=> onHide())
     }
 
@@ -54,20 +54,24 @@ export const CreateDevice= observer(({show,onHide})=>{
         <Modal.Body>
           <Form>
             <Dropdown className="mt-2 mb-2">
-              <Dropdown.Toggle>{device.setSelectedType.name || 'Choose type'}</Dropdown.Toggle>
+              <Dropdown.Toggle>{device.selectedType.name || 'Choose type'}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {device.types.map((type) => (
-                  <Dropdown.Item onClick={()=>device.setSelectedType(type)}
-                  key={type.id}>{type.name}</Dropdown.Item>
+                  <Dropdown.Item 
+                  onClick={()=>device.setSelectedType(type)}
+                  key={type.id}
+                  >{type.name}</Dropdown.Item>
                 ))}
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mt-2 mb-2">
-              <Dropdown.Toggle>{device.setSelectedBrand.name ||'Choose brand'}</Dropdown.Toggle>
+              <Dropdown.Toggle>{device.selectedBrand.name ||'Choose brand'}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {device.brands.map((brand) => (
-                  <Dropdown.Item onClick={()=>device.setSelectedBrand(brand)}
-                  key={brand.id}>{brand.name}</Dropdown.Item>
+                  <Dropdown.Item 
+                  onClick={()=>device.setSelectedBrand(brand)}
+                  key={brand.id}
+                  >{brand.name}</Dropdown.Item>
                 ))}
               </Dropdown.Menu>
             </Dropdown>
@@ -93,24 +97,24 @@ export const CreateDevice= observer(({show,onHide})=>{
             <Button variant="outline-dark" onClick={addInfo}>
               Add new property
             </Button>
-            {info.map((inf) => (
-              <Row className="mt-3" key={inf.number}>
+            {info.map((i) => (
+              <Row className="mt-3" key={i.number}>
                 <Col md={4}>
                   <Form.Control
-                  value={inf.title} 
-                  onChange={(e)=> changeInfo('title',e.target.value,inf.number)}
+                  value={i.title} 
+                  onChange={(e)=> changeInfo('title',e.target.value,i.number)}
                   placeholder="Enter name property" />
                 </Col>
                 <Col md={4}>
                   <Form.Control
-                  value={inf.description}
-                  onChange={(e)=> changeInfo('description',e.target.value,inf.number)}
+                  value={i.description}
+                  onChange={(e)=> changeInfo('description',e.target.value,i.number)}
                   placeholder="Enter description property" />
                 </Col>
                 <Col md={4}>
                   <Button
                     variant={"outline-danger"}
-                    onClick={() => removeInfo(inf.number)}      
+                    onClick={() => removeInfo(i.number)}      
                    > Delete
                   </Button>
                 </Col>

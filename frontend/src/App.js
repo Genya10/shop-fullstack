@@ -11,7 +11,7 @@ import { Spinner } from 'react-bootstrap';
 
 const App = observer(()=> {
   const {user} = useContext(Context);
-  const [loading,setLoading]=useState(true);
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,7 +21,7 @@ const App = observer(()=> {
           user.setIsAuth(true);
         })
         .finally(() => setLoading(false));
-    }, 1000);
+    }, 500);
   }, []);
 
   if(loading){
