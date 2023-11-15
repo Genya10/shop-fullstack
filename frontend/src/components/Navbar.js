@@ -8,7 +8,7 @@ import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/const';
 import Button from 'react-bootstrap/Button'
 import { observer } from 'mobx-react-lite';
 
-export const NavBar =observer(()=>{
+export const NavBar = observer(()=>{
   const {user}=useContext(Context)
   const navigate = useNavigate()
 
