@@ -110,9 +110,8 @@ export const CreateDevice= observer(({show,onHide})=>{
                 <Col md={4}>
                   <Button
                     variant={"outline-danger"}
-                    onClick={() => removeInfo(inf.number)}
-                  >
-                    Delete
+                    onClick={() => removeInfo(inf.number)}      
+                   > Delete
                   </Button>
                 </Col>
               </Row>

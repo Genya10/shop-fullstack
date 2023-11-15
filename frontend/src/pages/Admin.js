@@ -6,9 +6,9 @@ import { CreateType } from '../components/modals/CreateType';
 import { useState } from 'react';
 
 export const Admin = ()=>{
-    const [brandVisible,setBrandVisible]=useState(false);
-    const [typeVisible,setTypeVisible]=useState(false);
-    const [deviceVisible,setDeviceVisible]=useState(false);
+    const [brandVisible,setBrandVisible] = useState(false);
+    const [typeVisible,setTypeVisible] = useState(false);
+    const [deviceVisible,setDeviceVisible] = useState(false);
     const onHideBrand=()=>{
         setBrandVisible(false)
     }
