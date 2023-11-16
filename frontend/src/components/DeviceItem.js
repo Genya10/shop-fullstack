@@ -25,4 +25,3 @@ export const DeviceItem=({device})=>{
         </Col>
     )
 }
-/**  <Image width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}/>*/

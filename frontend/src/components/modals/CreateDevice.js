@@ -7,17 +7,15 @@ import { fetchTypes,fetchBrands,createDevice } from "../../http/deviceAPI";
 import { observer } from "mobx-react-lite";
 
 export const CreateDevice= observer(({show,onHide})=>{
-    const { device } = useContext(Context);
-    const [info, setInfo] = useState([]);
+    const { device } = useContext(Context);   
     const [name, setName] = useState("");
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(null);
     const [file, setFile] = useState(null);
-    const [type, setType] = useState(null);
-    const [brand, setBrand] = useState(null);
+    const [info, setInfo] = useState([]);
 
     useEffect(()=>{
-        fetchTypes().then(data=>device.setTypes(data))
-        fetchBrands().then(data=>device.setBrands(data))
+        fetchTypes().then(data => device.setTypes(data))
+        fetchBrands().then(data => device.setBrands(data))
       },[])
 
     const addInfo=()=>{
@@ -27,7 +25,7 @@ export const CreateDevice= observer(({show,onHide})=>{
         setInfo(info.filter(i => i.number !== number))
     }
     const changeInfo=(key,value,number)=>{
-        setInfo(info.map(i => i.number === number ? {...i,[key]:value}:i))
+        setInfo(info.map(i => i.number === number ? {...i,[key]:value} : i))
     }
     const selectFile = e =>{
         setFile(e.target.files[0])
@@ -45,7 +43,10 @@ export const CreateDevice= observer(({show,onHide})=>{
     }
 
     return (
-      <Modal show={show} onHide={onHide} size="lg" centered>
+      <Modal 
+        show={show} 
+        onHide={onHide} 
+        size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             Add new type
@@ -54,7 +55,7 @@ export const CreateDevice= observer(({show,onHide})=>{
         <Modal.Body>
           <Form>
             <Dropdown className="mt-2 mb-2">
-              <Dropdown.Toggle>{device.selectedType.name || 'Choose type'}</Dropdown.Toggle>
+              <Dropdown.Toggle>{device.selectedType.name || 'Выберите тип'}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {device.types.map((type) => (
                   <Dropdown.Item 
@@ -65,7 +66,7 @@ export const CreateDevice= observer(({show,onHide})=>{
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mt-2 mb-2">
-              <Dropdown.Toggle>{device.selectedBrand.name ||'Choose brand'}</Dropdown.Toggle>
+              <Dropdown.Toggle>{device.selectedBrand.name ||'Выберите брэнд'}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {device.brands.map((brand) => (
                   <Dropdown.Item 
@@ -81,7 +82,7 @@ export const CreateDevice= observer(({show,onHide})=>{
                 setName(e.target.value);
               }}
               className="mt-3"
-              placeholder="Enter name device"
+              placeholder="введите наименование"
             />
             <Form.Control
               value={price}
@@ -89,7 +90,7 @@ export const CreateDevice= observer(({show,onHide})=>{
                 setPrice(Number(e.target.value));
               }}
               className="mt-3"
-              placeholder="Enter price device"
+              placeholder="введите цену"
               type="number"
             />
             <Form.Control className="mt-3" type="file" onChange={selectFile} />

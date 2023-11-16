@@ -7,7 +7,7 @@ import { fetchOneDevice } from '../http/deviceAPI';
 export const DevicePage = ()=>{
     const [device,setDevice]=useState({info:[]})   
     const {id} = useParams()
-    console.log({id})
+  
     useEffect(()=>{
       fetchOneDevice(id).then(data=>setDevice(data))
     },[])
@@ -48,14 +48,3 @@ export const DevicePage = ()=>{
       </Container>
     );
 }
-/*
-  const device =   {id:1,name:"Smartphone",price:12000,rating:5,
-    img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomfy.ua%2Fsmartfon-xiaomi-redmi-note-12-8-256gb-sunrise-gold.html&psig=AOvVaw2RqqDyIpErOwyrNGbemPSC&ust=1699526947149000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCK-7SdtIIDFQAAAAAdAAAAABAo"}
-  const description =[
-    {id:1,title:'memory',description:'5 gb'},
-    {id:2,title:'camera',description:'12 mp'},
-    {id:3,title:'proccesor',description:'pentium 3'},
-    {id:4,title:'cors',description:'3'},
-    {id:5,title:'accumulator',description:'3000'},
-  ]
- */
