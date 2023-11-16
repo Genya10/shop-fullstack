@@ -4,7 +4,8 @@ export class DeviceStore {
     constructor(){
        this._types=[]   
        this._brands=[]       
-       this._devices =[]      
+       this._devices =[]
+       this._basket =[]      
        this._selectedType={}
        this._selectedBrand={}
        this._page = 1
@@ -21,6 +22,9 @@ export class DeviceStore {
     }
     setDevices(devices){
         this._devices = devices
+    }
+    setBasket(basket){
+        this._basket = basket
     }
     setSelectedType(type){
         this.setPage(1)
@@ -45,6 +49,9 @@ export class DeviceStore {
     }
     get devices(){
         return this._devices
+    }
+    get basket(){
+        return this._basket
     }
     get selectedType(){
         return this._selectedType
