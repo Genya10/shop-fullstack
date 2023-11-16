@@ -49,7 +49,7 @@ export const CreateDevice= observer(({show,onHide})=>{
         size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add new type
+            Добавить новый тип
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -66,7 +66,7 @@ export const CreateDevice= observer(({show,onHide})=>{
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mt-2 mb-2">
-              <Dropdown.Toggle>{device.selectedBrand.name ||'Выберите брэнд'}</Dropdown.Toggle>
+              <Dropdown.Toggle>{device.selectedBrand.name ||'Выберите бренд'}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {device.brands.map((brand) => (
                   <Dropdown.Item 
@@ -96,39 +96,39 @@ export const CreateDevice= observer(({show,onHide})=>{
             <Form.Control className="mt-3" type="file" onChange={selectFile} />
             <hr />
             <Button variant="outline-dark" onClick={addInfo}>
-              Add new property
+              Добавить новое свойство
             </Button>
-            {info.map((i) => (
+            {info.map(i => 
               <Row className="mt-3" key={i.number}>
                 <Col md={4}>
                   <Form.Control
                   value={i.title} 
                   onChange={(e)=> changeInfo('title',e.target.value,i.number)}
-                  placeholder="Enter name property" />
+                  placeholder="Введите наименование свойства" />
                 </Col>
                 <Col md={4}>
                   <Form.Control
                   value={i.description}
                   onChange={(e)=> changeInfo('description',e.target.value,i.number)}
-                  placeholder="Enter description property" />
+                  placeholder="Введите описание свойства" />
                 </Col>
                 <Col md={4}>
                   <Button
                     variant={"outline-danger"}
                     onClick={() => removeInfo(i.number)}      
-                   > Delete
+                   > Удалить
                   </Button>
                 </Col>
               </Row>
-            ))}
+            )}
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-danger" onClick={onHide}>
-            Close
+            Закрыть
           </Button>
           <Button variant="outline-success" onClick={addDevice}>
-            Add
+            Добавить
           </Button>
         </Modal.Footer>
       </Modal>

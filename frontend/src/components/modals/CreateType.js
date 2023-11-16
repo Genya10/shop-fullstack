@@ -21,7 +21,7 @@ export const CreateType=({show,onHide})=>{
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add new type
+           Добавить новый тип
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -33,8 +33,8 @@ export const CreateType=({show,onHide})=>{
             </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-danger" onClick={onHide}>Close</Button>
-          <Button variant="outline-success" onClick={addType}>Add</Button>
+          <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
+          <Button variant="outline-success" onClick={addType}>Добавить</Button>
         </Modal.Footer>
       </Modal>
     )

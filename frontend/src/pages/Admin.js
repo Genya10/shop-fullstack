@@ -23,13 +23,13 @@ export const Admin = ()=>{
         <Container className='d-flex flex-column'>
             <Button variant={'outline-dark'} className='mt-2 p-3'
                 onClick={()=>{setTypeVisible(true)}}>
-                Add type</Button>
+                Добавить тип</Button>
             <Button variant={'outline-dark'} className='mt-2 p-3'
                 onClick={()=>{setBrandVisible(true)}}>
-                Add brand</Button>
+                Добавить брэнд</Button>
             <Button variant={'outline-dark'} className='mt-2 p-3'
                 onClick={()=>{setDeviceVisible(true)}}>
-                Add device</Button>
+                Добавить товар</Button>
             <CreateBrand show={brandVisible} onHide={onHideBrand}/>
             <CreateDevice show={deviceVisible} onHide={onHideDevice}/>
             <CreateType show={typeVisible} onHide={onHideType}/>

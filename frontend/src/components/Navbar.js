@@ -22,25 +22,25 @@ export const NavBar = observer(()=>{
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
         <NavLink style={{ color: "white" }} to={SHOP_ROUTE}>
-          BuyDevice
+          Экипировка для тяжелой атлетики
         </NavLink>
         {user.isAuth ? (
           <Nav className="ml-auto">
             <Button            
             variant={"outline-light"}
             onClick={()=>navigate(ADMIN_ROUTE)}
-            >Admin
+            >Админ
             </Button>
             <Button 
             variant={"outline-light"} style={{marginLeft:"10px"}}
             onClick={()=>logout()}
-            >Go out
+            >Выйти
             </Button>
           </Nav>
         ) : (
           <Nav>
             <Button variant={"outline-light"}
-            onClick={()=>navigate(LOGIN_ROUTE)}>Authorization</Button>
+            onClick={()=>navigate(LOGIN_ROUTE)}>Авторизация</Button>
           </Nav>
         )}
       </Container>
