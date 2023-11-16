@@ -25,9 +25,9 @@ export const Auth = observer(()=>{
         data = await login(email,password)
       }else{
         data = await registration(email,password)
-        console.log(data)
       }         
-      user.setUser(data)
+      user.setUser(data.id)
+      user.setIsUser(data.role)
       //user.setUser(user)
       user.setIsAuth(true)  
       navigate(SHOP_ROUTE)

@@ -4,9 +4,13 @@ export class UserStore {
     constructor(){
         this._isAuth = false
         this._user ={}
+        this._isRole={}
         makeAutoObservable(this)
     }
-
+ 
+    setIsUser(bool){
+        this._isRole = bool
+    }
     setIsAuth(bool){
         this._isAuth = bool
     }

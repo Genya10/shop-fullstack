@@ -17,9 +17,10 @@ const App = observer(()=> {
     setTimeout(() => {
       check()
         .then((data) => {
-          user.setUser(true);
-          //user.setUser(data);
+          //user.setUser(true);
+          user.setUser(data.id);
           user.setIsAuth(true);
+          user.setIsUser(data.role)
         })
         .finally(() => setLoading(false));
     }, 500);
