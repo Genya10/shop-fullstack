@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react';
 import {Col,Container,Image,Row,Card,Button} from "react-bootstrap";
 import bigStar from "../assets/bigStar.png";
 import { useParams } from 'react-router-dom';
-import { fetchOneDevice } from '../http/deviceAPI';
+import { fetchOneDevice,addBasket } from '../http/deviceAPI';
 
 export const DevicePage = ()=>{
     const [device,setDevice]=useState({info:[]})   
@@ -11,6 +11,12 @@ export const DevicePage = ()=>{
     useEffect(()=>{
       fetchOneDevice(id).then(data=>setDevice(data))
     },[])
+
+    const addProduct =()=>{
+      const formData = new FormData()
+      formData.append('deviceId',id)
+      addBasket(formData).then(response => alert (`Товар`+ device.name + `добавлен в корзину`))
+    }
 
     return (
       <Container className='mt-3'>
@@ -33,8 +39,8 @@ export const DevicePage = ()=>{
          <Card
            className='d-flex flex-column align-items-center justify-content-around'
            style={{width:300, height:300, fontSize:32, border:'5px solid lightgray'}}>
-            <h3>{device.price}</h3>
-            <Button variant={'outline-dark'}>Add to basket</Button>
+            <h3>{device.price}грн</h3>
+            <Button variant={'outline-dark'} onClick={addProduct}>Добавить в корзину</Button>
          </Card>
         </Col>
         </Row>
