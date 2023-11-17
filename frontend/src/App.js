@@ -20,7 +20,7 @@ const App = observer(()=> {
           //user.setUser(true);
           user.setUser(data.id);
           user.setIsAuth(true);
-          user.setIsUser(data.role)
+          user.setIsRole(data.role)
         })
         .finally(() => setLoading(false));
     }, 500);

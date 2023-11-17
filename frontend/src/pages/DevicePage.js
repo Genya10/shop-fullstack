@@ -9,13 +9,19 @@ export const DevicePage = ()=>{
     const {id} = useParams()
   
     useEffect(()=>{
-      fetchOneDevice(id).then(data=>setDevice(data))
+      fetchOneDevice(id).then(data=>       
+        setDevice(data))
     },[])
 
     const addProduct =()=>{
-      const formData = new FormData()
-      formData.append('deviceId',id)
-      addBasket(formData).then(response => alert (`Товар`+ device.name + `добавлен в корзину`))
+      const formData = new FormData()      
+      formData.append('deviceId',id)      
+      addBasket(formData).then(response => {
+        alert (`Товар+ ${device.name} + добавлен в корзину`)
+        console.log(response)}
+        ).catch(error=>{
+          console.log(error)
+        })       
     }
 
     return (

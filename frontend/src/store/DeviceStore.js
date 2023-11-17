@@ -5,7 +5,7 @@ export class DeviceStore {
        this._types=[]   
        this._brands=[]       
        this._devices =[]
-       this._basket =[]      
+       this._baskets =[]      
        this._selectedType={}
        this._selectedBrand={}
        this._page = 1
@@ -24,7 +24,7 @@ export class DeviceStore {
         this._devices = devices
     }
     setBasket(basket){
-        this._basket = basket
+        this._baskets = basket
     }
     setSelectedType(type){
         this.setPage(1)
@@ -51,7 +51,7 @@ export class DeviceStore {
         return this._devices
     }
     get basket(){
-        return this._basket
+        return this._baskets
     }
     get selectedType(){
         return this._selectedType
