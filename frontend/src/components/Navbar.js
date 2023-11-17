@@ -16,6 +16,8 @@ export const NavBar = observer(()=>{
     user.setUser({})
     user.setIsAuth(false)
     localStorage.removeItem('token')
+    user.setIsRole({})
+    //window.location.reload();
   }
 
   return (
@@ -26,17 +28,20 @@ export const NavBar = observer(()=>{
         </NavLink>
         {user.isAuth ? (
           <Nav className="ml-auto">
-            <Button            
+            
+               <Button            
             variant={"outline-light"}
             onClick={()=>navigate(ADMIN_ROUTE)}
             >Админ
             </Button>
+       
             <Button
               variant={"outline-light"}
               onClick={()=>navigate(BASKET_ROUTE)}
               className="ms-3">
                 Корзина
             </Button>
+            
             <Button 
             variant={"outline-light"} style={{marginLeft:"10px"}}
             onClick={()=>logout()}
