@@ -7,6 +7,8 @@ import { NavLink,useNavigate } from 'react-router-dom';
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE,BASKET_ROUTE } from '../utils/const';
 import Button from 'react-bootstrap/Button'
 import { observer } from 'mobx-react-lite';
+import flag from '../assets/flagOfUkraine.png';
+import { Image } from 'react-bootstrap';
 
 export const NavBar = observer(()=>{
   const {user}=useContext(Context)
@@ -17,24 +19,24 @@ export const NavBar = observer(()=>{
     user.setIsAuth(false)
     localStorage.removeItem('token')
     user.setIsRole({})
-    //window.location.reload();
   }
 
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
+        <div >
         <NavLink style={{ color: "white" }} to={SHOP_ROUTE}>
           Экипировка для тяжелой атлетики
         </NavLink>
+        <Image src={flag} width={80} style={{marginLeft:'15px'}}/>
+        </div>       
         {user.isAuth ? (
-          <Nav className="ml-auto">
-            
+          <Nav className="ml-auto">           
                <Button            
             variant={"outline-light"}
             onClick={()=>navigate(ADMIN_ROUTE)}
             >Админ
-            </Button>
-       
+            </Button>       
             <Button
               variant={"outline-light"}
               onClick={()=>navigate(BASKET_ROUTE)}
