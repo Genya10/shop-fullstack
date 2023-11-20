@@ -13,7 +13,7 @@ export const Basket = observer(()=>{
         getBasket().then(data=> device.setBasket(data))
         console.log('rerender')
     },[]);
-    /*useEffect(()=>{
+   /* useEffect(()=>{
       const fetchData = async ()=>{
         const data = await getBasket();
         device.setBasket(data);

@@ -16,6 +16,17 @@ class BasketController {
         }, where: {basketId:id}})
         return res.json(basket)
     }
+
+    async clearBasket(req, res, next) {
+        const user = req.user;
+        try {
+          await BasketDevice.destroy({ where: { basketId: user.id } });
+          return res.json({ message: 'Корзина успешно очищена' });
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ message: 'Ошибка при очистке корзины' });
+        }
+      }
 }
 
 module.exports = new BasketController();

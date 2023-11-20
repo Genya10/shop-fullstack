@@ -1,4 +1,5 @@
 import {makeAutoObservable} from "mobx";
+import { cleanBasketOnServer } from "../http/deviceAPI";
 
 export class DeviceStore {
     constructor(){
@@ -73,4 +74,13 @@ export class DeviceStore {
         console.log("Remove item id:",productId)
         this._baskets = this._baskets.filter(item => item.id !== productId)
     }
+    async clearBasket(){
+        try{
+            await cleanBasketOnServer()
+            this._baskets=[]
+            localStorage.removeItem("basket");        
+    }catch (error){
+        alert('Ошибка при удалении',error)
+    }
+ }
 }

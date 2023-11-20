@@ -1,4 +1,5 @@
 import { $authHost,$host } from "./indexHttp";
+import axios from "axios";
 
 export const createType = async(type)=>{
     const {data} = await $authHost.post('api/type',type)
@@ -41,3 +42,14 @@ export const getBasket = async ()=>{
     const {data} = await $authHost.get('api/basket')
     return data
 }
+
+ const API_DELETE_BASKET = "http://localhost:5000";
+
+ export const cleanBasketOnServer = async ()=>{
+    try{
+        const response = await axios.delete(`${API_DELETE_BASKET}/api/basket/clear`);
+        return response.data
+    }catch(error){
+        throw new Error("Ошибка при удалении на сервере")
+    }
+ }
