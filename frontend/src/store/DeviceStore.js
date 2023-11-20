@@ -24,6 +24,7 @@ export class DeviceStore {
         this._devices = devices
     }
     setBasket(basket){
+        console.log("new basket",basket)
         this._baskets = basket
     }
     setSelectedType(type){
@@ -67,5 +68,9 @@ export class DeviceStore {
     }
     get limit(){
         return this._limit
+    }
+    removeFromBasket(productId){
+        console.log("Remove item id:",productId)
+        this._baskets = this._baskets.filter(item => item.id !== productId)
     }
 }

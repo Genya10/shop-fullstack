@@ -17,7 +17,7 @@ export const DevicePage = ()=>{
       const formData = new FormData()      
       formData.append('deviceId',id)      
       addBasket(formData).then(response => {
-        alert (`Товар+ ${device.name} + добавлен в корзину`)
+        alert (`Товар ${device.name}  добавлен в корзину`)
         console.log(response)}
         ).catch(error=>{
           console.log(error)

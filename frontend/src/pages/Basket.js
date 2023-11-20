@@ -7,14 +7,29 @@ import { observer } from 'mobx-react-lite';
 
 export const Basket = observer(()=>{
     const {device} = useContext(Context);
+    console.log('Basket rerender!')
 
     useEffect(()=>{
         getBasket().then(data=> device.setBasket(data))
+        console.log('rerender')
     },[]);
+    /*useEffect(()=>{
+      const fetchData = async ()=>{
+        const data = await getBasket();
+        device.setBasket(data);
+      };
+      fetchData();
+      console.log('rerender useEffect')
+    },[device.id]);*/
 
     let prices = 0;
     {device.basket.map(price =>
         prices += Number(price.device.price))}
+
+    const handleRemoveItem = (productId)=>{
+      console.log("Rem",productId)
+      device.removeFromBasket(productId)
+    }
 
     return (
       <Container className="d-flex flex-sm-column justify-content-center align-items-center mt-3">
@@ -40,17 +55,16 @@ export const Basket = observer(()=>{
                 <div className="d-flex flex-row align-items-center">
                   <img
                     src={"http://localhost:5000/" + prod.device.img}
-                    width={50}
+                    width={80}
                   />
-                  <h2 className="pl-3">{prod.device.name}</h2>
+                  <h2 style={{paddingLeft:'10px'}}>{prod.device.name}</h2>
                 </div>
               </Col>
               <Col>
                 <div className="d-flex h-100 flex-row justify-content-end align-items-center">
                   <h3 className="font-weight-light">{prod.device.price}грн</h3>
-                </div>
-             </Col>
-             <Col>
+                  <div onClick={()=> handleRemoveItem(prod.id)} style={{marginLeft:'10px',cursor:'pointer'}}>X</div>
+                </div>        
              </Col>
             </Row>
           </Card>
