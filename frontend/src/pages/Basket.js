@@ -49,7 +49,9 @@ export const Basket = observer(()=>{
                 <div className="d-flex h-100 flex-row justify-content-end align-items-center">
                   <h3 className="font-weight-light">{prod.device.price}грн</h3>
                 </div>
-              </Col>
+             </Col>
+             <Col>
+             </Col>
             </Row>
           </Card>
         ))}
