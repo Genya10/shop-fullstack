@@ -26,10 +26,10 @@ export const Auth = observer(()=>{
       }else{
         data = await registration(email,password)
       }         
-      user.setUser(data.id)
-      user.setIsRole(data.role)
+      user.setUser(data)  
       //user.setUser(user)
-      user.setIsAuth(true)  
+      user.setIsAuth(true) 
+       user.setIsRole(data.role)
       navigate(SHOP_ROUTE)
     }catch(e){
       alert(e.response.data.message)

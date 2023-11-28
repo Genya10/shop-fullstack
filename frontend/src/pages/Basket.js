@@ -26,9 +26,9 @@ export const Basket = observer(()=>{
     {device.basket.map(price =>
         prices += Number(price.device.price))}
 
-    const handleRemoveItem = (productId)=>{
+    const handleRemoveItem = async (productId)=>{
       console.log("Rem",productId)
-      device.removeFromBasket(productId)
+      await device.removeFromBasket(productId)
     }
 
     return (

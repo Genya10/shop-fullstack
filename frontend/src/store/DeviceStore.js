@@ -76,7 +76,9 @@ export class DeviceStore {
     }
     async clearBasket(){
         try{
+            console.log('Before clean')
             await cleanBasketOnServer()
+            console.log('After clean')
             this._baskets=[]
             localStorage.removeItem("basket");        
     }catch (error){
