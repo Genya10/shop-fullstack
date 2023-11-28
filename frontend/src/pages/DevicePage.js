@@ -54,7 +54,7 @@ export const DevicePage = ()=>{
             <h2>Характеристики</h2>
             {device.info.map((info,index)=>
                 <Row key={info.id} style={{background:index % 2 === 0 ? 'lightgray':'transparent',padding:5}}>
-                    {info.title}:{info.description}</Row>
+                    {info.title}: {info.description}</Row>
             )}
         </Row>
       </Container>

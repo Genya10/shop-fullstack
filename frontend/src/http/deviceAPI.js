@@ -43,13 +43,13 @@ export const getBasket = async ()=>{
     return data
 }
 
- const API_DELETE_BASKET = "http://localhost:5000";
+// const API_DELETE_BASKET = "http://localhost:5000";
 
  export const cleanBasketOnServer = async ()=>{
     try{
-        const response = await axios.delete(`${API_DELETE_BASKET}/api/basket/clear`);
+        const response = await axios.delete('http://localhost:5000/api/basket/clear');
         return response.data
     }catch(error){
-        throw new Error("Ошибка при удалении на сервере")
+        throw new Error("Ошибка при удалении на сервере",error)
     }
  }
