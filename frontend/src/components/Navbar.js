@@ -17,7 +17,7 @@ export const NavBar = observer(()=>{
   const logout = ()=>{
     user.setUser({})
     user.setIsAuth(false)
-    localStorage.removeItem('token')
+    //localStorage.removeItem('token')
     user.setIsRole({})
     device.clearBasket();
   }

@@ -27,9 +27,9 @@ export const CreateType=({show,onHide})=>{
         <Modal.Body>
             <Form>
                 <Form.Control
-                 value={value}
-                 onChange={(e)=>{setValue(e.target.value)}}
-                 placeholder={'Enter name type'}/>              
+                  value={value}
+                  onChange={(e)=>{setValue(e.target.value)}}
+                  placeholder={'Enter name type'}/>              
             </Form>
         </Modal.Body>
         <Modal.Footer>

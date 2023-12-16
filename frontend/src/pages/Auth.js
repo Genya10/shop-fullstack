@@ -19,21 +19,21 @@ export const Auth = observer(()=>{
     const [password, setPassword] = useState("");
 
     const click = async()=>{
-      try{
-      let data ;
-      if(isLogin){
-        data = await login(email,password)
-      }else{
-        data = await registration(email,password)
-      }         
-      user.setUser(data)  
-      //user.setUser(user)
-      user.setIsAuth(true) 
-       user.setIsRole(data.role)
-      navigate(SHOP_ROUTE)
-    }catch(e){
-      alert(e.response.data.message)
-    }
+      try {
+        let data;
+        if (isLogin) {
+          data = await login(email, password);
+        } else {
+          data = await registration(email, password);
+        }
+        //user.setUser(data);
+        user.setUser(user)
+        user.setIsAuth(true);
+        user.setIsRole(data.role);
+        navigate(SHOP_ROUTE);
+      } catch (e) {
+        alert(e.response.data.message);
+      }
 }
     return(
       <Container

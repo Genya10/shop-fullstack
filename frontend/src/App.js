@@ -17,9 +17,9 @@ const App = observer(()=> {
   useEffect(() => {
     setTimeout(() => {
       check()
-        .then((data) => {
-          //user.setUser(true);
-          user.setUser(data);
+        .then(data => {
+          user.setUser(true);
+         // user.setUser(data.id);
           user.setIsAuth(true);
           user.setIsRole(data.role)
         })
