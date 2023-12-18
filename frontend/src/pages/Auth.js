@@ -40,7 +40,7 @@ export const Auth = observer(()=>{
        className='d-flex justify-content-center align-items-center'
        style={{height:window.innerHeight-54}}>
         <Card style={{width:'600px'}} className='p-5'>
-            <h2 className='m-auto'>{isLogin ?'Authorization':'Registretion'}</h2>
+            <h2 className='m-auto'>{isLogin ?'Авторизация':'Регистрация'}</h2>
           <Form className='d-flex flex-column'>
              <Form.Control 
                   className='mt-3'
@@ -57,15 +57,15 @@ export const Auth = observer(()=>{
           <Row className='d-flex justify-content-between mt-3'>
             {isLogin ?
             <div>
-              Don't have an account?<NavLink to={REGISTRATION_ROUTE}>Registration</NavLink>
+              Нет аккаунта?<NavLink to={REGISTRATION_ROUTE}>Регистрация</NavLink>
             </div>
             :
             <div>
-                Do you have account?<NavLink to={LOGIN_ROUTE}>Enter</NavLink>
+              Есть аккаунт?<NavLink to={LOGIN_ROUTE}>Вход</NavLink>
             </div>}
             <Button variant={'outline-success'}
                   onClick={click}>                    
-              {isLogin ? 'Enter':'Registration'}
+              {isLogin ? 'Вход':'Регистрация'}
             </Button>
             </Row>        
         </Card>
