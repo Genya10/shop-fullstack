@@ -18,8 +18,8 @@ const App = observer(()=> {
     setTimeout(() => {
       check()
         .then(data => {
-          user.setUser(true);
-         // user.setUser(data.id);
+          //user.setUser(true);
+         user.setUser(data);
           user.setIsAuth(true);
           user.setIsRole(data.role)
         })

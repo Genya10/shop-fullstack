@@ -15,11 +15,12 @@ export const NavBar = observer(()=>{
   const navigate = useNavigate()
 
   const logout = () => {
-    user.setUser({})
-    user.setIsAuth(false)
-    localStorage.removeItem('token')
-    user.setIsRole({})
+    user.setUser({});
+    user.setIsAuth(false);
+    localStorage.removeItem('token');
+    user.setIsRole({});
     device.clearBasket();
+    console.log(device)
   }
 
   return (

@@ -28,7 +28,7 @@ export const CreateBrand=({show,onHide})=>{
                 <Form.Control 
                   value={value}
                   onChange={(e)=>{setValue(e.target.value)}}
-                  placeholder={'Enter name brand'}/>              
+                  placeholder={'Введите новый бренд'}/>              
             </Form>
         </Modal.Body>
         <Modal.Footer>

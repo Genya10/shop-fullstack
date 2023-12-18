@@ -5,22 +5,22 @@ import { SHOP_ROUTE} from "../utils/const";
 import { Context } from "../index";
 
 export const AppRouter = ()=>{
-    const {user} = useContext(Context)
-    console.log(user.isAuth);
+  const {user} = useContext(Context)
+  console.log(user.isAuth);
     
-    return (
-        <div>
-      <Routes>
-        {user.isAuth &&
-          authRoutes.map(({ path, Component }) => 
-            <Route key={path} path={path} element={<Component/>} />
-          )}
-           {publicRoutes.map(({ path, Component }) =>
-            <Route key={path} path={path} element={<Component/>} />
-          )}
-        <Route path="*" element={<Navigate to={SHOP_ROUTE} replace={true}/>}/>
-          </Routes>
-      </div>
-    );
+  return (
+      <div>
+    <Routes>
+      {user.isAuth &&
+        authRoutes.map(({ path, Component }) => 
+          <Route key={path} path={path} element={<Component/>} />
+        )}
+          {publicRoutes.map(({ path, Component }) =>
+          <Route key={path} path={path} element={<Component/>} />
+        )}
+      <Route path="*" element={<Navigate to={SHOP_ROUTE} replace={true}/>}/>
+        </Routes>
+    </div>
+  );
 
 }

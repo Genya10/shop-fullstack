@@ -26,7 +26,7 @@ export const Admin = ()=>{
                 Добавить тип</Button>
             <Button variant={'outline-dark'} className='mt-2 p-3'
                 onClick={()=>{setBrandVisible(true)}}>
-                Добавить брэнд</Button>
+                Добавить бренд</Button>
             <Button variant={'outline-dark'} className='mt-2 p-3'
                 onClick={()=>{setDeviceVisible(true)}}>
                 Добавить товар</Button>

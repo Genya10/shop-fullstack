@@ -29,7 +29,7 @@ export const CreateType=({show,onHide})=>{
                 <Form.Control
                   value={value}
                   onChange={(e)=>{setValue(e.target.value)}}
-                  placeholder={'Enter name type'}/>              
+                  placeholder={'Введите название типа'}/>              
             </Form>
         </Modal.Body>
         <Modal.Footer>
