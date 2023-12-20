@@ -16,11 +16,11 @@ export const NavBar = observer(()=>{
 
   const logout = () => {
     user.setUser({});
-    user.setIsAuth(false);
-    localStorage.removeItem('token');
+    user.setIsAuth(false);   
     user.setIsRole({});
+    //device.deleteBasket();
     device.clearBasket();
-    console.log(device)
+    localStorage.removeItem('token');
   }
 
   return (

@@ -2,9 +2,12 @@ const sequelize = require("../db");
 const { DataTypes } = require("sequelize");
 
 const User = sequelize.define("user", {
+  // тип - число, primaryKey - первичный ключ, и будет автоинкрементироваться, те послед. записи будут +1
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    // тип - строка, должен не повторяться у пользователей
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
+  // по умолчанию будем делать пользователя просто юзером
   role: { type: DataTypes.STRING, defaultValue: "USER" },
 });
 
@@ -18,6 +21,7 @@ const BasketDevice = sequelize.define("basket_device", {
 
 const Device = sequelize.define("device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    // allowNull false - не может быть равно нулю
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.INTEGER, defaultValue: 0 },
@@ -49,9 +53,14 @@ const TypeBrand = sequelize.define("type_brand", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
+// Все внешние ключи sequelize добавит сам при связывании
+
+// cсвязь один к одному
 User.hasOne(Basket);
+// корзина пренадлежит пользователю
 Basket.belongsTo(User);
 
+// пользователь может иметь несколько оценок
 User.hasMany(Rating);
 Rating.belongsTo(User);
 
@@ -70,9 +79,12 @@ Rating.belongsTo(Device);
 Device.hasMany(BasketDevice);
 BasketDevice.belongsTo(Device);
 
+// info - название поля, которое будет у массива характеристик
 Device.hasMany(DeviceInfo, { as: "info" });
 DeviceInfo.belongsTo(Device);
 
+// связь многие ко многим
+// необходимо указать связующую таблицу - связующую модель
 Type.belongsToMany(Brand, { through: TypeBrand });
 Brand.belongsToMany(Type, { through: TypeBrand });
 

@@ -29,46 +29,47 @@ export const Basket = observer(()=>{
     const handleRemoveItem = async (productId)=>{
       console.log("Rem",productId)
       await device.removeFromBasket(productId)
+      await device.clearBasket()
     }
 
-    return (
-      <Container className="d-flex flex-sm-column justify-content-center align-items-center mt-3">
-        <h1 className="pb-2">Корзина</h1>
+  return (
+    <Container className="d-flex flex-sm-column justify-content-center align-items-center mt-3">
+      <h1 className="pb-2">Корзина</h1>
 
-        <Card>
-          <h2 className="d-flex flex-row p-2 justify-content-between align-items-center mb-2">
-            Сумма:
-          </h2>
-          <h3 className="pr-2">
-            {prices}
-            <span className="font-weight-light pl-3">грн</span>
-          </h3>
+      <Card>
+        <h2 className="d-flex flex-row p-2 justify-content-between align-items-center mb-2">
+          Сумма:
+        </h2>
+        <h3 className="pr-2">
+          {prices}
+          <span className="font-weight-light pl-3">грн</span>
+        </h3>
+      </Card>
+
+      {device.basket.map((prod) => (
+        <Card
+          className="d-flex w-100 p-2 justify-content-center mb-2"
+          key={prod.id}
+        >
+          <Row className="d-flex w-100">
+            <Col>
+              <div className="d-flex flex-row align-items-center">
+                <img
+                  src={"http://localhost:5000/" + prod.device.img}
+                  width={80}
+                />
+                <h2 style={{paddingLeft:'10px'}}>{prod.device.name}</h2>
+              </div>
+            </Col>
+            <Col>
+              <div className="d-flex h-100 flex-row justify-content-end align-items-center">
+                <h3 className="font-weight-light">{prod.device.price}грн</h3>
+                <div onClick={()=> handleRemoveItem(prod.id)} style={{marginLeft:'10px',cursor:'pointer'}}>X</div>
+              </div>        
+            </Col>
+          </Row>
         </Card>
-
-        {device.basket.map((prod) => (
-          <Card
-            className="d-flex w-100 p-2 justify-content-center mb-2"
-            key={prod.id}
-          >
-            <Row className="d-flex w-100">
-              <Col>
-                <div className="d-flex flex-row align-items-center">
-                  <img
-                    src={"http://localhost:5000/" + prod.device.img}
-                    width={80}
-                  />
-                  <h2 style={{paddingLeft:'10px'}}>{prod.device.name}</h2>
-                </div>
-              </Col>
-              <Col>
-                <div className="d-flex h-100 flex-row justify-content-end align-items-center">
-                  <h3 className="font-weight-light">{prod.device.price}грн</h3>
-                  <div onClick={()=> handleRemoveItem(prod.id)} style={{marginLeft:'10px',cursor:'pointer'}}>X</div>
-                </div>        
-             </Col>
-            </Row>
-          </Card>
-        ))}
-      </Container>
-    );
+      ))}
+    </Container>
+  );
 });

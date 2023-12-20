@@ -2,18 +2,21 @@ import {makeAutoObservable} from "mobx";
 import { cleanBasketOnServer } from "../http/deviceAPI";
 
 export class DeviceStore {
-    constructor(){
-       this._types=[]   
-       this._brands=[]       
-       this._devices =[]
-       this._baskets =[]      
-       this._selectedType={}
-       this._selectedBrand={}
-       this._page = 1
-       this._totalCount = 0
-       this._limit = 3
-        makeAutoObservable(this)
-    }
+constructor(){
+    this._types=[]   
+    this._brands=[]       
+    this._devices =[]
+    this._baskets =[]      
+    this._selectedType={}
+    this._selectedBrand={}
+    this._page = 1
+    this._totalCount = 0
+    this._limit = 3
+    makeAutoObservable(this)
+    //Загрузка данных из localStorage
+    const storedBasket = localStorage.getItem("basket");
+    this._baskets = storedBasket ? JSON.parse(storedBasket):[]
+}
 
     setTypes(types){
         this._types = types
@@ -41,6 +44,9 @@ export class DeviceStore {
     }
     setTotalCount(count){
         this._totalCount = count
+    }
+    deleteBasket(){
+        this._baskets=[];
     }
   // computed функции вызываются в том случае, если переменная, которая
   //используется внутри была изменена
@@ -74,14 +80,16 @@ export class DeviceStore {
     removeFromBasket(productId){
         console.log("Remove item id:",productId)
         this._baskets = this._baskets.filter(item => item.id !== productId)
+        localStorage.setItem("basket",JSON.stringify(this._baskets))
+        console.log("Update baskets:", this._baskets)
     }
     async clearBasket(){
         try{
             console.log('Before clean')
             await cleanBasketOnServer()
             console.log('After clean')
-            this._baskets=[]
-            localStorage.removeItem("basket");        
+            localStorage.clear();
+            //localStorage.removeItem("basket");      
     }catch (error){
         alert('Ошибка при удалении',error)
     }
