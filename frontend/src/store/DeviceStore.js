@@ -42,7 +42,8 @@ export class DeviceStore {
     setTotalCount(count){
         this._totalCount = count
     }
-
+  // computed функции вызываются в том случае, если переменная, которая
+  //используется внутри была изменена
     get types(){
         return this._types
     }
