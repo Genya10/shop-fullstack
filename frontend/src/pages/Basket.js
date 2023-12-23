@@ -9,28 +9,37 @@ export const Basket = observer(()=>{
     const {device} = useContext(Context);
     console.log('Basket rerender!')
 
-    useEffect(()=>{
+     useEffect(()=>{
         getBasket().then(data=> device.setBasket(data))
         console.log('rerender')
     },[]);
-   /* useEffect(()=>{
-      const fetchData = async ()=>{
-        const data = await getBasket();
-        device.setBasket(data);
-      };
-      fetchData();
-      console.log('rerender useEffect')
-    },[device.id]);*/
+
 
     let prices = 0;
     {device.basket.map(price =>
         prices += Number(price.device.price))}
 
-    const handleRemoveItem = async (productId)=>{
+    /* const handleRemoveItem = async (productId)=>{
       console.log("Rem",productId)
       await device.removeFromBasket(productId)
-      await device.clearBasket()
+      await device.clearBasket(productId)
     }
+      */
+   const handleRemoveItem = async (productId) => {
+      console.log("Rem", productId);
+      try {
+          // 1. Выполнить запрос на сервер для удаления товара
+           console.log('Before clearBasket');
+          await device.clearBasket(productId);
+           console.log('After clearBasket');
+          // 2. Обновить корзину в MobX store
+          const updatedBasket = device.basket.filter(item => item.id !== productId);
+          console.log('Updated Basket:', updatedBasket);
+          device.setBasket(updatedBasket);
+      } catch (error) {
+          console.error("Error while removing item:", error);
+      }
+  };
 
   return (
     <Container className="d-flex flex-sm-column justify-content-center align-items-center mt-3">
@@ -73,3 +82,12 @@ export const Basket = observer(()=>{
     </Container>
   );
 });
+
+  /* useEffect(()=>{
+      const fetchData = async ()=>{
+        const data = await getBasket();
+        device.setBasket(data);
+      };
+      fetchData();
+      console.log('rerender useEffect')
+    },[device.id]);*/

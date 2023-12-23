@@ -1,5 +1,5 @@
-import {makeAutoObservable} from "mobx";
-import { cleanBasketOnServer } from "../http/deviceAPI";
+import {makeAutoObservable,reaction} from "mobx";
+import { cleanBasketOnServer,getBasket } from "../http/deviceAPI";
 
 export class DeviceStore {
 constructor(){
@@ -13,9 +13,11 @@ constructor(){
     this._totalCount = 0
     this._limit = 3
     makeAutoObservable(this)
+
     //Загрузка данных из localStorage
-    const storedBasket = localStorage.getItem("basket");
-    this._baskets = storedBasket ? JSON.parse(storedBasket):[]
+    //const storedBasket = localStorage.getItem("basket");
+    //this._baskets = storedBasket ? JSON.parse(storedBasket):[];
+    
 }
 
     setTypes(types){
@@ -29,7 +31,8 @@ constructor(){
     }
     setBasket(basket){
         console.log("new basket",basket)
-        this._baskets = basket
+        this._baskets = basket;
+        //localStorage.setItem("basket",JSON.stringify(basket));
     }
     setSelectedType(type){
         this.setPage(1)
@@ -77,18 +80,19 @@ constructor(){
     get limit(){
         return this._limit
     }
+
+   /**/
     removeFromBasket(productId){
         console.log("Remove item id:",productId)
         this._baskets = this._baskets.filter(item => item.id !== productId)
         localStorage.setItem("basket",JSON.stringify(this._baskets))
         console.log("Update baskets:", this._baskets)
     }
-    async clearBasket(){
+    async clearBasket(productId){
         try{
             console.log('Before clean')
-            await cleanBasketOnServer()
-            console.log('After clean')
-            localStorage.clear();
+            await cleanBasketOnServer(productId)
+            console.log('After clean: '+productId)
             //localStorage.removeItem("basket");      
     }catch (error){
         alert('Ошибка при удалении',error)
