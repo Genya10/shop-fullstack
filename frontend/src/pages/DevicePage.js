@@ -2,7 +2,8 @@ import React,{useEffect,useState} from 'react';
 import {Col,Container,Image,Row,Card,Button} from "react-bootstrap";
 import bigStar from "../assets/bigStar.png";
 import { useParams } from 'react-router-dom';
-import { fetchOneDevice,addBasket } from '../http/deviceAPI';
+import { fetchOneDevice } from '../http/deviceAPI';
+import { addBasket } from '../http/basketAPI';
 
 export const DevicePage = ()=>{
     const [device,setDevice]=useState({info:[]})   

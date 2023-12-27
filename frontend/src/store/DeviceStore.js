@@ -1,5 +1,5 @@
 import {makeAutoObservable,reaction} from "mobx";
-import { cleanBasketOnServer,getBasket } from "../http/deviceAPI";
+import { cleanBasketOnServer,getBasket } from "../http/basketAPI";
 
 export class DeviceStore {
 constructor(){

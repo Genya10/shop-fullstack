@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import { useContext } from 'react';
 import { Context } from '../index';
-import { getBasket } from '../http/deviceAPI';
+import { getBasket } from '../http/basketAPI';
 import { Card,Col,Container,Row } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
 
@@ -13,7 +13,6 @@ export const Basket = observer(()=>{
         getBasket().then(data=> device.setBasket(data))
         console.log('rerender')
     },[]);
-
 
     let prices = 0;
     {device.basket.map(price =>
