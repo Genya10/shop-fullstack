@@ -14,13 +14,19 @@ export const NavBar = observer(()=>{
   const {user,basket} = useContext(Context)
   const navigate = useNavigate()
 
-  const logout = () => {
-    user.setUser({});
-    user.setIsAuth(false);   
-    user.setIsRole({});
-    //basket.deleteBasket();
-    basket.clearBasket();
-    localStorage.removeItem('token');
+  const logout = async() => {
+    try{
+      //Сначала очищаем корзину
+      await basket.clearBasket();
+      //Затем выходим из системы
+      user.setUser({});
+      user.setIsAuth(false);   
+      user.setIsRole({});  
+      localStorage.removeItem('token');
+      navigate(SHOP_ROUTE);
+    }catch(error){
+      console.error('Error during logout:', error);
+    }
   }
 
   return (

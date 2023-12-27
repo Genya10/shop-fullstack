@@ -12,9 +12,6 @@ export class BasketStore {
         console.log("new basket111",basket);
           //localStorage.setItem("basket",JSON.stringify(basket));
     }
-    deleteBasket(){
-        this._basket = []
-    }
 
     get basket(){
         return this._basket
@@ -31,7 +28,6 @@ export class BasketStore {
             console.log("Before clean1")
             await cleanBasketOnServer(productId)
             console.log('After clean11: ' + productId)
-             //localStorage.removeItem("basket");     
         }catch(error){
             alert('Ошибка при удалении!',error)
         }

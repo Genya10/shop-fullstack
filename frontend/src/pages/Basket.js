@@ -18,12 +18,6 @@ export const Basket = observer(()=>{
     {basket.basket.map(price =>
         prices += Number(price.device.price))}
 
-    /* const handleRemoveItem = async (productId)=>{
-      console.log("Rem",productId)
-      await device.removeFromBasket(productId)
-      await device.clearBasket(productId)
-    }
-      */
    const handleRemoveItem = async (productId) => {
       console.log("Rem", productId);
       try {
