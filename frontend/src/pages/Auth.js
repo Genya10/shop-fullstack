@@ -26,10 +26,11 @@ export const Auth = observer(()=>{
       } else {
         data = await registration(email, password);
       }
-      user.setUser(data);
+      await user.setUser(data);
       //user.setUser(user)
       user.setIsAuth(true);
       user.setIsRole(data.role);
+      console.log('User data after successful login:', user);
       navigate(SHOP_ROUTE);
       console.log(user)
     } catch (e) {

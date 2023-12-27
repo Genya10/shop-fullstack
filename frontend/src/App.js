@@ -20,12 +20,13 @@ const App = observer(()=> {
         .then(data => {
           //user.setUser(true);
           user.setUser(data);
+          console.log(user.isAuth)
           user.setIsAuth(true);
           user.setIsRole(data.role);
           console.log(data.role)
         })
         .catch(error => {
-          console.error("Authentication check failed:",error);
+          console.error("Проверка аутентификации не удалась:",error);
           user.setIsAuth(false);
         }
         )

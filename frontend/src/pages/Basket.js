@@ -12,7 +12,7 @@ export const Basket = observer(()=>{
      useEffect(()=>{
         getBasket().then(data=> basket.setBasket(data))
         console.log('rerender')
-    },[]);
+    },[basket]);
 
     let prices = 0;
     {basket.basket.map(price =>

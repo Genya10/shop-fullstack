@@ -11,7 +11,7 @@ import { fetchTypes,fetchBrands,fetchDevices } from '../http/deviceAPI';
 import { Pages } from '../components/Pages';
 
 export const Shop = observer( ()=>{
-  const {device}=useContext(Context);
+  const {device,user}=useContext(Context);
 
 useEffect(()=>{
   fetchTypes().then(data=>device.setTypes(data))
@@ -19,10 +19,13 @@ useEffect(()=>{
 },[]);
 
 useEffect(()=>{
-  fetchDevices(device.selectedType.id,device.selectedBrand.id,device.page,3).then(data=>{
+  if(user.isAuth){  
+    console.log(user.isAuth)
+   fetchDevices(device.selectedType.id,device.selectedBrand.id,device.page,3).then(data=>{
     device.setDevices(data.rows)
     device.setTotalCount(data.count)
   })
+}
 },[device.page,device.selectedType.id,device.selectedBrand.id]);
 
   return (
