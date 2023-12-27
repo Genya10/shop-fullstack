@@ -11,15 +11,15 @@ import flag from '../assets/flagOfUkraine.png';
 import { Image } from 'react-bootstrap';
 
 export const NavBar = observer(()=>{
-  const {user,device} = useContext(Context)
+  const {user,basket} = useContext(Context)
   const navigate = useNavigate()
 
   const logout = () => {
     user.setUser({});
     user.setIsAuth(false);   
     user.setIsRole({});
-    //device.deleteBasket();
-    device.clearBasket();
+    //basket.deleteBasket();
+    basket.clearBasket();
     localStorage.removeItem('token');
   }
 

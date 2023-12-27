@@ -6,16 +6,16 @@ import { Card,Col,Container,Row } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
 
 export const Basket = observer(()=>{
-    const {device} = useContext(Context);
+    const {basket} = useContext(Context);
     console.log('Basket rerender!')
 
      useEffect(()=>{
-        getBasket().then(data=> device.setBasket(data))
+        getBasket().then(data=> basket.setBasket(data))
         console.log('rerender')
     },[]);
 
     let prices = 0;
-    {device.basket.map(price =>
+    {basket.basket.map(price =>
         prices += Number(price.device.price))}
 
     /* const handleRemoveItem = async (productId)=>{
@@ -29,12 +29,12 @@ export const Basket = observer(()=>{
       try {
           // 1. Выполнить запрос на сервер для удаления товара
            console.log('Before clearBasket');
-          await device.clearBasket(productId);
+          await basket.clearBasket(productId);
            console.log('After clearBasket');
           // 2. Обновить корзину в MobX store
-          const updatedBasket = device.basket.filter(item => item.id !== productId);
+          const updatedBasket = basket.basket.filter(item => item.id !== productId);
           console.log('Updated Basket:', updatedBasket);
-          device.setBasket(updatedBasket);
+          basket.setBasket(updatedBasket);
       } catch (error) {
           console.error("Error while removing item:", error);
       }
@@ -54,7 +54,7 @@ export const Basket = observer(()=>{
         </h3>
       </Card>
 
-      {device.basket.map((prod) => (
+      {basket.basket.map((prod) => (
         <Card
           className="d-flex w-100 p-2 justify-content-center mb-2"
           key={prod.id}
