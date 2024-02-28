@@ -9,10 +9,23 @@ export const Basket = observer(()=>{
     const {basket} = useContext(Context);
     console.log('Basket rerender!')
 
-     useEffect(()=>{
+     /*useEffect(()=>{
         getBasket().then(data=> basket.setBasket(data))
         console.log('rerender')
-    },[basket]);
+    },[]);*/
+
+    useEffect(()=>{
+      const fetchData = async()=>{
+        try{
+         const data = await getBasket();
+         basket.setBasket(data);
+         console.log('rerender')
+        } catch(error){
+         console.error('Error fetching basket data:',error)
+        }
+      }
+      fetchData();
+  },[basket]);
 
     let prices = 0;
     {basket.basket.map(price =>
@@ -75,12 +88,3 @@ export const Basket = observer(()=>{
     </Container>
   );
 });
-
-  /* useEffect(()=>{
-      const fetchData = async ()=>{
-        const data = await getBasket();
-        device.setBasket(data);
-      };
-      fetchData();
-      console.log('rerender useEffect')
-    },[device.id]);*/

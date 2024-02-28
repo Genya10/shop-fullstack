@@ -1,5 +1,5 @@
 import React,{useContext} from "react";
-import { Routes,Route,Navigate,useNavigate} from "react-router-dom";
+import { Routes,Route,useNavigate} from "react-router-dom";
 import { authRoutes,publicRoutes } from "../routes";
 import { SHOP_ROUTE} from "../utils/const";
 import { Context } from "../index";
@@ -23,8 +23,7 @@ export const AppRouter = ()=>{
         navigate(SHOP_ROUTE,{replace:true});
               return null;
             }) }
-       />  
-      
+       />       
         </Routes>
     </div>
   );

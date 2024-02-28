@@ -15,7 +15,6 @@ const App = observer(()=> {
   const [loading,setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
       check()
         .then(data => {
           //user.setUser(true);
@@ -31,7 +30,6 @@ const App = observer(()=> {
         }
         )
         .finally(() => setLoading(false));
-    }, 500);
   }, []);
 
   if(loading){

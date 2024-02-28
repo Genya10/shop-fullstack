@@ -6,6 +6,7 @@ class BasketController {
         const user = req.user 
         const {deviceId} = req.body
         const basket = await BasketDevice.create({basketId : user.id, deviceId : deviceId})
+       // return res.json({id:basket.id,deviceId:basket.deviceId})
         return res.json(basket)
     }
 
